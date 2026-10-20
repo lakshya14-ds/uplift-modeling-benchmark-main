@@ -1,0 +1,80 @@
+[
+  {
+    "model_a": "SLearner_LightGBM",
+    "model_b": "ResponseBaseline_LightGBM",
+    "metric_name": "qini_coefficient",
+    "estimate_a": 1.791986606542268e-05,
+    "estimate_b": -0.0010972059791912257,
+    "point_difference": 0.0011151258452566483,
+    "diff_ci_lower": -0.002769572321474425,
+    "diff_ci_upper": 0.00463503046878751,
+    "is_significant": false,
+    "p_value_approx": 0.59,
+    "n_boot": 200
+  },
+  {
+    "model_a": "SLearner_LightGBM",
+    "model_b": "RandomBaseline",
+    "metric_name": "qini_coefficient",
+    "estimate_a": 1.791986606542268e-05,
+    "estimate_b": -0.002767202765371868,
+    "point_difference": 0.002785122631437291,
+    "diff_ci_lower": -0.0010854761307550486,
+    "diff_ci_upper": 0.006763878272560405,
+    "is_significant": false,
+    "p_value_approx": 0.13,
+    "n_boot": 200
+  },
+  {
+    "model_a": "TLearner_LightGBM",
+    "model_b": "ResponseBaseline_LightGBM",
+    "metric_name": "qini_coefficient",
+    "estimate_a": -0.0016620931645207435,
+    "estimate_b": -0.0010972059791912257,
+    "point_difference": -0.0005648871853295178,
+    "diff_ci_lower": -0.004259453419176178,
+    "diff_ci_upper": 0.0035364303133666457,
+    "is_significant": false,
+    "p_value_approx": 0.76,
+    "n_boot": 200
+  },
+  {
+    "model_a": "TLearner_LightGBM",
+    "model_b": "RandomBaseline",
+    "metric_name": "qini_coefficient",
+    "estimate_a": -0.0016620931645207435,
+    "estimate_b": -0.002767202765371868,
+    "point_difference": 0.0011051096008511247,
+    "diff_ci_lower": -0.002898489183488137,
+    "diff_ci_upper": 0.00613206950153042,
+    "is_significant": false,
+    "p_value_approx": 0.53,
+    "n_boot": 200
+  },
+  {
+    "model_a": "XLearner_LightGBM",
+    "model_b": "ResponseBaseline_LightGBM",
+    "metric_name": "qini_coefficient",
+    "estimate_a": -5.062165607388475e-05,
+    "estimate_b": -0.0010972059791912257,
+    "point_difference": 0.001046584323117341,
+    "diff_ci_lower": -0.0037819185819578005,
+    "diff_ci_upper": 0.005022559094018939,
+    "is_significant": false,
+    "p_value_approx": 0.7,
+    "n_boot": 200
+  },
+  {
+    "model_a": "XLearner_LightGBM",
+    "model_b": "RandomBaseline",
+    "metric_name": "qini_coefficient",
+    "estimate_a": -5.062165607388475e-05,
+    "estimate_b": -0.002767202765371868,
+    "point_difference": 0.0027165811092979835,
+    "diff_ci_lower": -0.0019170023734179254,
+    "diff_ci_upper": 0.007785370151391676,
+    "is_significant": false,
+    "p_value_approx": 0.25,
+    "n_boot": 200
+  }
+]

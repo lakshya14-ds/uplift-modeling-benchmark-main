@@ -1,0 +1,37 @@
+# Lint, unit tests, and headless execution of the notebooks.
+# The CI=true environment variable (set by GitHub Actions) makes the
+# notebooks use reduced sample and bootstrap sizes. The Criteo notebook
+# skips its computation cells in CI because the raw data (about 311 MB,
+# not redistributable) is never downloaded here; the synthetic validation
+# notebook always runs in full.
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt -r requirements-dev.txt
+
+      - name: Lint
+        run: ruff check .
+
+      - name: Unit and numerical tests
+        run: pytest -q
+
+      - name: Execute notebooks
+        run: |
+          for nb in notebooks/*.ipynb; do
+            jupyter nbconvert --to notebook --execute --inplace "$nb"
+          done

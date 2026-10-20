@@ -1,0 +1,59 @@
+# IncrementalImpact Configuration
+project_name: "IncrementalImpact: Causal Uplift Modelling for Smarter Advertising"
+version: "0.1.0"
+mode: "synthetic"  # "synthetic" or "criteo"
+
+data:
+  raw_path: "data/raw/criteo-research-uplift-v2.1.csv.gz"
+  manifest_path: "data/manifests/dataset_manifest.json"
+  sample_size: 100000  # Configurable sample size (100k - 300k) for CPU-friendly execution
+  random_seed: 42
+  features: ["f0", "f1", "f2", "f3", "f4", "f5", "f6", "f7", "f8", "f9", "f10", "f11"]
+  treatment_col: "treatment"
+  primary_outcome_col: "visit"
+  secondary_outcome_col: "conversion"
+  excluded_cols: ["exposure", "conversion", "visit"]  # Strictly excluded from feature matrix X
+
+split:
+  train_ratio: 0.60
+  val_ratio: 0.20
+  test_ratio: 0.20
+  stratify_cols: ["treatment", "visit"]
+  random_seed: 42
+
+models:
+  compare_models:
+    - "random"
+    - "response_baseline"
+    - "s_learner"
+    - "t_learner"
+    - "x_learner"
+  base_classifier: "lightgbm"  # "lightgbm" or "logistic_regression"
+  logistic_regression:
+    max_iter: 1000
+    C: 1.0
+  lightgbm:
+    n_estimators: 100
+    max_depth: 5
+    learning_rate: 0.05
+    num_leaves: 31
+    random_state: 42
+
+evaluation:
+  top_k_fractions: [0.10, 0.20, 0.30]
+  grid_points: 20
+  bootstrap_resamples: 200
+  confidence_level: 0.95
+  multi_seed_runs: [42, 101, 2024]
+
+targeting_policy:
+  default_capacity_ratio: 0.20
+  simulator:
+    cost_per_target: 0.50       # Hypothetical uniform ad cost per targeted user ($)
+    value_per_visit: 25.00      # Hypothetical estimated value per incremental website visit ($)
+    budget: 10000.00            # Total campaign budget constraint ($)
+
+tracking:
+  mlflow_tracking_uri: "sqlite:///mlruns.db"
+  experiment_name: "incremental_impact_benchmark"
+  duckdb_path: "reports/experiment_summary.duckdb"

@@ -1,0 +1,10 @@
+{
+  "dataset_name": "Synthetic Criteo-Calibrated Benchmark DGP",
+  "mode": "synthetic",
+  "regime": "heterogeneous",
+  "sample_size": 50000,
+  "random_seed": 42,
+  "treatment_share": 0.84878,
+  "control_visit_rate": 0.05171273641052771,
+  "treated_visit_rate": 0.0758029171281133
+}
